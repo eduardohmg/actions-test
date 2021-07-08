@@ -27,6 +27,8 @@ public class HelloWorldController {
     
     //properties
     private String name;
+
+    private String nonUsed__ = "test";
     
     /**
      * default empty constructor
