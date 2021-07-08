@@ -57,7 +57,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: actions-test-pr-${{ github.event.number }}
-          path: target/*.war
+          path: target/server.war
 
   package:
     name: Dockerize
