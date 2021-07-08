@@ -65,7 +65,7 @@ jobs:
           path: target/*.war
 
   package:
-    name: Dockrize
+    name: Dockerize
     runs-on: self-hosted
     needs: build
     steps:
@@ -86,3 +86,25 @@ jobs:
         with:
           push: true
           tags: eduardohmg/actions-test:pr-${{ github.event.number }}
+
+  deploy-preview:
+    name: Deploy Preview
+    runs-on: self-hosted
+    steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Docker pull
+        id: docker_pull
+        run: docker pull eduardohmg/actions-test:pr-${{ github.event.number }}
+      - name: Docker Run
+        id: docker_run
+        run: |
+          docker run -d -P
+            -l traefik.enable=true
+            -l traefik.frontend.rule=Host:pr-${{ github.event.number }}.dev.loc
+            -l traefik.protocol=http
+            --name pr-${{ github.event.number }}
+            eduardohmg/actions-test:pr-${{ github.event.number }}
