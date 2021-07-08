@@ -78,16 +78,16 @@ jobs:
           name: actions-test-pr-${{ github.event.number }}
       - uses: actions/checkout@v2
       - name: Set up JDK 11
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'adopt'
-          - name: Set up Maven
-            uses: stCarolas/setup-maven@v4
-            with:
-              maven-version: 3.6.0
-          - name: Build with Maven
-          run: mvn -B package --file pom.xml -DskipTests
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4
+        with:
+          maven-version: 3.6.0
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml -DskipTests
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
