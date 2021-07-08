@@ -65,14 +65,6 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v2
-      - name: Check First
-        run: ls
-      - name: Fetch war file
-        uses: actions/download-artifact@v2
-        with:
-          name: actions-test-pr-${{ github.event.number }}
-      - name: Check After
-        run: ls
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
@@ -80,6 +72,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Fetch war file
+        uses: actions/download-artifact@v2
+        with:
+          name: actions-test-pr-${{ github.event.number }}
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
