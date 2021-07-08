@@ -102,9 +102,9 @@ jobs:
       - name: Docker Run
         id: docker_run
         run: |
-          docker run -d -P
-            -l traefik.enable=true
-            -l traefik.frontend.rule=Host:pr-${{ github.event.number }}.dev.loc
-            -l traefik.protocol=http
-            --name pr-${{ github.event.number }}
+          docker run -d -P \
+            -l traefik.enable=true \
+            -l traefik.frontend.rule=Host:pr-${{ github.event.number }}.dev.loc \
+            -l traefik.protocol=http \
+            --name pr-${{ github.event.number }} \
             eduardohmg/actions-test:pr-${{ github.event.number }}
