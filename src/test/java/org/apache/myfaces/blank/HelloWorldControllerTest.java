@@ -23,6 +23,6 @@ public class HelloWorldControllerTest {
 
         controller.setName(name);
 
-        assertEquals("name", controller.getName());
+        assertEquals(name, controller.getName());
     }
 }
