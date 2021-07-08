@@ -1,6 +1,6 @@
-FROM tomcat:8.0-alpine
+FROM tomcat:8.5.68-jdk11-openjdk-slim
 
-ADD target/hello-actions-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/
+ADD target/*.war /usr/local/tomcat/webapps/actions-test.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
