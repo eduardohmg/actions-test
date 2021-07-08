@@ -69,15 +69,10 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v2
-      - name: Create targe folder
-        run: mkdir target/
       - name: Fetch war file
         uses: actions/download-artifact@v2
         with:
           name: actions-test-pr-${{ github.event.number }}
-          path: ./target
-      - name: Check folder
-        run: ls target
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
