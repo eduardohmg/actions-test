@@ -43,7 +43,7 @@ jobs:
     steps:
       - name: Get branch name
         uses: nelonoel/branch-name@v1
-        
+      
       - name: Set variables
         run: echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
       
