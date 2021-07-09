@@ -13,6 +13,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: test2
+        run: echo ${GITHUB_REF##*/}
       - name: test
         run: echo ${{ toJson(github) }}
       - name: Docker pull
