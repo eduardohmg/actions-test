@@ -13,7 +13,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: branch_name
-        run: echo "${{env}}"
+        run: echo ${{ toJson(env) }}
 
   deploy-preview:
     name: Deploy Preview
