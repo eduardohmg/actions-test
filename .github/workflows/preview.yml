@@ -55,4 +55,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-          env_url: ${{ env.PREVIEW_NAME }}.dev.loc
+          env_url: 'http://${{ env.PREVIEW_NAME }}.dev.loc'
