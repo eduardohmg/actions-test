@@ -12,7 +12,7 @@ jobs:
   stop-preview:
     name: Deploy Preview
     runs-on: self-hosted
-    if: github.event_name != 'issue_comment' || github.event.comment.body == 'deploy'
+    if: github.event_name != 'issue_comment' || github.event.comment.body == '/stop'
     steps:
       - name: Set variables
         run: |
