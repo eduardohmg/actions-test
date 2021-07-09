@@ -19,7 +19,7 @@ jobs:
       - name: Set variables
         run: |
           echo "DOCKER_IMAGE=eduardohmg/actions-test:${{ steps.branch_name.outputs.current_branch }}" >> $GITHUB_ENV
-          echo "PREVIEW_NAME=${{ steps.branch_name-name.outputs.current_branch }}" >> $GITHUB_ENV
+          echo "PREVIEW_NAME=${{ steps.branch_name.outputs.current_branch }}" >> $GITHUB_ENV
       
       - name: Login to DockerHub
         uses: docker/login-action@v1
