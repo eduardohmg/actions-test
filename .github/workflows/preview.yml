@@ -3,7 +3,7 @@ name: Deploy Preview
 on: workflow_dispatch
 
 env:
-  DOCKER_IMAGE: eduardohmg/actions-test/sdfsd # current branch name
+  DOCKER_IMAGE: eduardohmg/actions-test/${GITHUB_REF##*/} # current branch name
   PREVIEW_NAME: ${GITHUB_REF##*/} # current branch name
 
 jobs:
