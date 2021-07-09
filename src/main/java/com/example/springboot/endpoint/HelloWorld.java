@@ -11,6 +11,6 @@ public class HelloWorld {
     @GetMapping("/hello-world")
     @ResponseBody
     public String sayHello(@RequestParam(name="name", required=false, defaultValue="Stranger") String name) {
-        return "Helloa, " + name + "!";
+        return "Hello, " + name + "!";
     }
 }
