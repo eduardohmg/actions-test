@@ -26,9 +26,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Stop instance
-        id: docker_run
         run: docker stop ${{ env.PREVIEW_NAME }}
 
       - name: Remove container
-        id: docker_run
         run: docker rm ${{ env.PREVIEW_NAME }}
