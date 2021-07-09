@@ -12,6 +12,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: test
+        run: echo ${{ github }}
       - name: Docker pull
         id: docker_pull
         run: docker pull eduardohmg/actions-test:pr-${{ github.event.number }}
