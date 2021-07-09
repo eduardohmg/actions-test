@@ -6,7 +6,6 @@ jobs:
   deploy-preview:
     name: Deploy Preview
     runs-on: self-hosted
-    needs: package
     steps:
       - name: Login to DockerHub
         uses: docker/login-action@v1
