@@ -20,6 +20,9 @@ jobs:
           echo "DOCKER_IMAGE=eduardohmg/actions-test:${BRANCH_NAME}" >> $GITHUB_ENV
           echo "PREVIEW_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
       
+      - name: Check env
+        run: echo ${BRANCH_NAME}
+      
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
