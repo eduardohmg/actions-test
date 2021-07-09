@@ -3,10 +3,19 @@ name: Deploy Preview
 on: workflow_dispatch
 
 jobs:
+  teardown:
+    name: Shutdown existing container
+    runs-on: self-hosted
+    needs: package
+    steps:
+      - name: Check whether container is up
+        id: check_container
+        run: docker ps -q -f name=^pr-${{ github.event.number }}$
+
   deploy-preview:
     name: Deploy Preview
     runs-on: self-hosted
-    needs: package
+    needs: teardown
     steps:
       - name: Login to DockerHub
         uses: docker/login-action@v1
