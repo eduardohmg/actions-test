@@ -25,7 +25,7 @@ jobs:
         run: |
           docker run -d -P \
             -l traefik.enable=true \
-            -l traefik.frontend.rule=Host:${{ PREVIEW_NAME }}.dev.loc \
+            -l traefik.frontend.rule=Host:${{ env.PREVIEW_NAME }}.dev.loc \
             -l traefik.protocol=http \
-            --name ${{ PREVIEW_NAME }} \
+            --name ${{ env.PREVIEW_NAME }} \
             ${{ env.DOCKER_IMAGE }}
