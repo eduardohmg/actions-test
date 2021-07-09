@@ -1,4 +1,4 @@
-name: Deploy Preview
+name: Preview
 
 on:
   issue_comment:
