@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 env:
   DOCKER_IMAGE: eduardohmg/actions-test/sdfsd # current branch name
-  PREVIEW_NAME: ${{ github.ref##*/ }} # current branch name
+  PREVIEW_NAME: ${GITHUB_REF##*/} # current branch name
 
 jobs:
 
