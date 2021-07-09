@@ -2,6 +2,11 @@ name: Deploy Preview
 
 on: workflow_dispatch
 
+env:
+  CURRENT_BRANCH: ${GITHUB_REF##*/}
+  DOCKER_IMAGE: eduardohmg/actions-test:${{ env.CURRENT_BRANCH }}
+  PREVIEW_NAME: ${{ env.CURRENT_BRANCH }}
+
 jobs:
 
   deploy-preview:
@@ -13,19 +18,15 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: test2
-        run: echo ${GITHUB_REF##*/}
-      - name: test
-        run: echo ${{ toJson(github) }}
       - name: Docker pull
         id: docker_pull
-        run: docker pull eduardohmg/actions-test:pr-${{ github.event.number }}
+        run: docker pull ${{ env.DOCKER_IMAGE }}
       - name: Docker Run
         id: docker_run
         run: |
           docker run -d -P \
             -l traefik.enable=true \
-            -l traefik.frontend.rule=Host:pr-${{ github.event.number }}.dev.loc \
+            -l traefik.frontend.rule=Host:${{ PREVIEW_NAME }}.dev.loc \
             -l traefik.protocol=http \
-            --name pr-${{ github.event.number }} \
-            eduardohmg/actions-test:pr-${{ github.event.number }}
+            --name ${{ PREVIEW_NAME }} \
+            ${{ env.DOCKER_IMAGE }}
