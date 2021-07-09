@@ -32,3 +32,11 @@ jobs:
 
       - name: Remove container
         run: docker rm ${{ env.PREVIEW_NAME }}
+
+      - name: Start deployment
+        uses: bobheadxi/deployments@v0.6.0
+        if: always()
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: ${{ env.PREVIEW_NAME }}
