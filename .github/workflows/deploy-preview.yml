@@ -10,7 +10,7 @@ jobs:
     name: Check Deploy Preview Comment
     runs-on: ubuntu-latest
     steps:
-      - uses: khan/pull-request-comment-trigger@master
+      - uses: khan/pull-request-comment-trigger@1.0.0
         id: check
         with:
           trigger: '#preview'
