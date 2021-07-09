@@ -24,11 +24,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - name: Pull image
-        id: docker_pull
         run: docker pull ${{ env.DOCKER_IMAGE }}
       
       - name: Run instance
-        id: docker_run
         run: |
           docker run -d -P \
             -l traefik.enable=true \
