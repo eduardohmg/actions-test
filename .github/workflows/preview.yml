@@ -21,7 +21,7 @@ jobs:
       - name: test4
         run: echo "${{ secrets.DOCKERHUB_USERNAME }}"
       - name: test5
-        run: echo "aa${{ echo ${GITHUB_REF##*/}} }}bb"
+        run: echo "aa${{ ${GITHUB_REF##*/}} }}bb"
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
