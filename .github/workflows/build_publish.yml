@@ -42,10 +42,11 @@ jobs:
     needs: build
     steps:
       - name: Get branch name
+        id: branch_name
         uses: tj-actions/branch-names@v4.5
 
       - name: Set variables
-        run: echo "BRANCH_NAME=${{ steps.branch-name.outputs.current_branch }}" >> $GITHUB_ENV
+        run: echo "BRANCH_NAME=${{ steps.branch_name.outputs.current_branch }}" >> $GITHUB_ENV
       
       - name: Checkout branch
         uses: actions/checkout@v2
