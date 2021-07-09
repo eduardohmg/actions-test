@@ -1,12 +1,16 @@
 name: Deploy Preview
 
-on: workflow_dispatch
+on:
+  issue_comment:
+    types: [ created ]
+  workflow_dispatch:
 
 jobs:
 
   deploy-preview:
     name: Deploy Preview
     runs-on: self-hosted
+    if: github.event_name != 'issue_comment' || github.event.comment.body == 'deploy'
     steps:
       - name: Set variables
         run: |
