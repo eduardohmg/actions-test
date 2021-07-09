@@ -6,9 +6,8 @@ on:
     types: [ opened, synchronize, reopened ]
 
 env:
-  CURRENT_BRANCH: ${GITHUB_REF##*/}
-  IMAGE_NAME: ${{ env.CURRENT_BRANCH }}
-  ARTIFACT_NAME: ${{ env.IMAGE_NAME }}-war
+  IMAGE_NAME: ${GITHUB_REF##*/} # current branch name
+  ARTIFACT_NAME: ${GITHUB_REF##*/}-war
 
 jobs:
   build:

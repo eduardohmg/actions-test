@@ -3,9 +3,8 @@ name: Deploy Preview
 on: workflow_dispatch
 
 env:
-  CURRENT_BRANCH: ${GITHUB_REF##*/}
-  DOCKER_IMAGE: eduardohmg/actions-test:${{ env.CURRENT_BRANCH }}
-  PREVIEW_NAME: ${{ env.CURRENT_BRANCH }}
+  DOCKER_IMAGE: eduardohmg/actions-test:${GITHUB_REF##*/} # current branch name
+  PREVIEW_NAME: ${GITHUB_REF##*/} # current branch name
 
 jobs:
 
