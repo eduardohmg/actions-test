@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Set variables
         run: |
-          echo "DOCKER_IMAGE=eduardohmg/actions-test/${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE=eduardohmg/actions-test:${GITHUB_REF##*/}" >> $GITHUB_ENV
           echo "PREVIEW_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
       
       - name: Login to DockerHub
