@@ -72,3 +72,15 @@ jobs:
           context: .
           push: true
           tags: eduardohmg/actions-test:${{ env.BRANCH_NAME }}
+
+  deploy:
+    name: Deploy Test
+    runs-on: ubuntu-latest
+    environment:
+      name: Preview
+      url: 'https://test.dev.loc'
+    needs: package
+    steps:
+      - name: Deploy
+        id: branch_name
+        uses: tj-actions/branch-names@v4.5
