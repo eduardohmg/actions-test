@@ -77,9 +77,9 @@ jobs:
     name: Deploy Test
     runs-on: ubuntu-latest
     environment:
-      name: ${{ env.BRANCH_NAME }}
+      name: Preview
       url: 'https://test.dev.loc'
-    needs: package
+    needs: build
     steps:
       - name: Deploy
         id: branch_name
