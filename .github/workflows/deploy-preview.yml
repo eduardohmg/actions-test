@@ -1,4 +1,4 @@
-name: Build
+name: Deploy Preview
 on:
   pull_request:
     types: [ opened ]
