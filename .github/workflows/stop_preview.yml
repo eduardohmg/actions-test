@@ -32,11 +32,3 @@ jobs:
 
       - name: Remove container
         run: docker rm ${{ env.PREVIEW_NAME }}
-
-      - name: Stop deployment
-        uses: bobheadxi/deployments@v0.6.0
-        if: always()
-        with:
-          step: deactivate-env
-          token: ${{ secrets.GITHUB_TOKEN }}
-          env: ${{ env.PREVIEW_NAME }}

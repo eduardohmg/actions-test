@@ -36,7 +36,7 @@ jobs:
         with:
           step: start
           token: ${{ secrets.GITHUB_TOKEN }}
-          env: ${{ env.PREVIEW_NAME }}
+          env: Preview
 
       - name: Run instance
         run: |
