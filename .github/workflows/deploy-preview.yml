@@ -4,6 +4,8 @@ on:
     types: [ opened ]
   issue_comment:
     types: [ created ]
+  pull_request_review_comment:
+    types: [ created ]
 
 jobs:
   check-comment:
@@ -17,7 +19,8 @@ jobs:
           reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      - run: 'echo Found it!'
+      - name: Say whether it found
+        run: 'echo Found it!'
         if: steps.check.outputs.triggered == 'true'
 
   deploy-preview:
