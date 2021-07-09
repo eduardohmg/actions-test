@@ -42,10 +42,10 @@ jobs:
     needs: build
     steps:
       - name: Get branch name
-        uses: nelonoel/branch-name@v1
-      
+        uses: tj-actions/branch-names@v4.5
+
       - name: Set variables
-        run: echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
+        run: echo "BRANCH_NAME=${{ steps.branch-name.outputs.current_branch }}" >> $GITHUB_ENV
       
       - name: Checkout branch
         uses: actions/checkout@v2

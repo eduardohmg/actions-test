@@ -15,10 +15,10 @@ jobs:
     if: github.event_name != 'issue_comment' || github.event.comment.body == '/stop'
     steps:
       - name: Get branch name
-        uses: nelonoel/branch-name@v1
+        uses: tj-actions/branch-names@v4.5
       
       - name: Set variables
-        run: echo "PREVIEW_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
+        run: echo "PREVIEW_NAME=${{ steps.branch-name.outputs.current_branch }}" >> $GITHUB_ENV
       
       - name: Login to DockerHub
         uses: docker/login-action@v1
