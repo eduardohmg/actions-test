@@ -12,5 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Say whether it triggered
-        run: 'echo Really Triggered!'
+        run: 'echo Really Triggered!!!'
         if: steps.check.outputs.triggered == 'true'
