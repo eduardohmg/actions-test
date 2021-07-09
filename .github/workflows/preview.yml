@@ -3,8 +3,8 @@ name: Deploy Preview
 on: workflow_dispatch
 
 env:
-  DOCKER_IMAGE: ${{ eduardohmg/actions-test:${GITHUB_REF##*/} }} # current branch name
-  PREVIEW_NAME: ${{ ${GITHUB_REF##*/} }} # current branch name
+  DOCKER_IMAGE: eduardohmg/actions-test # current branch name
+  PREVIEW_NAME: aaa # current branch name
 
 jobs:
 
@@ -12,6 +12,8 @@ jobs:
     name: Deploy Preview
     runs-on: self-hosted
     steps:
+      - name: testt
+        run: echo ${GITHUB_REF##*/}
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
