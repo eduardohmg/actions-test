@@ -40,7 +40,7 @@ jobs:
           env: ${{ env.PREVIEW_NAME }}
 
       - name: Stop instance if already exists
-        run: docker ps -q --filter "name=abc" | grep -q . && docker rm -f ${{ env.PREVIEW_NAME }} || echo Not Found
+        run: docker ps -q --filter "name=${{ env.PREVIEW_NAME }}" | grep -q . && docker rm -f ${{ env.PREVIEW_NAME }} || echo Not Found
 
       - name: Run instance
         run: |
