@@ -28,6 +28,7 @@ jobs:
 
       - name: Set variables for comment event
         run: |
+          echo "${{ toJson(steps.comment_branch.outputs) }}"
           echo "DOCKER_IMAGE=eduardohmg/actions-test:${{ steps.comment_branch.outputs.head_ref }}" >> $GITHUB_ENV
           echo "PREVIEW_NAME=${{ steps.comment_branch.outputs.head_ref }}" >> $GITHUB_ENV
         if: github.event_name == 'issue_comment'
