@@ -19,6 +19,7 @@ jobs:
       - name: Set variables
         run: |
           echo ${{ toJson(steps.branch_name.outputs) }}
+          echo ${{ toJson(github) }}
           echo "DOCKER_IMAGE=eduardohmg/actions-test:${{ steps.branch_name.outputs.current_branch }}" >> $GITHUB_ENV
           echo "PREVIEW_NAME=${{ steps.branch_name.outputs.current_branch }}" >> $GITHUB_ENV
 
