@@ -42,7 +42,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Deploy Preview
-          check_id: ${{ env.CURRENT_SHA }}
           sha: ${{ env.CURRENT_SHA }}
           status: in_progress
           output: |
@@ -94,7 +93,7 @@ jobs:
         if: always()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          check_id: ${{ env.CURRENT_SHA }}
+          check_id: ${{ steps.create_check.outputs.check_id }}
           sha: ${{ env.CURRENT_SHA }}
           conclusion: ${{ job.status }}
           status: completed
