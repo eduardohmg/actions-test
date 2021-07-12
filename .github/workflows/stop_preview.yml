@@ -41,3 +41,13 @@ jobs:
           step: deactivate-env
           token: ${{ secrets.GITHUB_TOKEN }}
           env: ${{ env.PREVIEW_NAME }}
+
+      - name: Update checks
+        uses: LouisBrunner/checks-action@v1.1.2
+        if: always()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Deployment
+          conclusion: ${{ job.status }}
+          output: |
+            {"summary":"Deployment stopped"}
