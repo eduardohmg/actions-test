@@ -38,7 +38,7 @@ jobs:
           echo "CURRENT_SHA=${{ steps.comment_branch.outputs.head_sha }}" >> $GITHUB_ENV
         if: github.event_name == 'issue_comment'
 
-      - uses: LouisBrunner/checks-action@v1.1.1
+      - uses: LouisBrunner/checks-action@v1.1.2
         if: always()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -71,7 +71,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           env: ${{ env.PREVIEW_NAME }}
 
-      - uses: LouisBrunner/checks-action@v1.1.1
+      - uses: LouisBrunner/checks-action@v1.1.2
         if: always()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
