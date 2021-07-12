@@ -38,14 +38,18 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           env: ${{ env.PREVIEW_NAME }}
 
+      - name: Stop instance if already exists
+        run: docker ps -q --filter "name=abc" | grep -q . && docker rm -f ${{ env.PREVIEW_NAME }} || echo Not Found
+
       - name: Run instance
         run: |
-          docker run -d -P \
+          docker run --rm -d -P \
             -l traefik.enable=true \
             -l traefik.frontend.rule=Host:${{ env.PREVIEW_NAME }}.dev.loc \
             -l traefik.protocol=http \
             --name ${{ env.PREVIEW_NAME }} \
             ${{ env.DOCKER_IMAGE }}
+        if: always()
 
       - name: update deployment status
         uses: bobheadxi/deployments@v0.6.0
