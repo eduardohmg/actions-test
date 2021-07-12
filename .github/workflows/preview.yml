@@ -16,12 +16,22 @@ jobs:
         id: branch_name
         uses: tj-actions/branch-names@v4.5
 
+      - name: Get branch name for comment event
+        uses: xt0rted/pull-request-comment-branch@v1.3.0
+        id: comment_branch
+
       - name: Set variables
         run: |
-          echo ${{ toJson(steps.branch_name.outputs) }}
-          echo ${{ toJson(github) }}
           echo "DOCKER_IMAGE=eduardohmg/actions-test:${{ steps.branch_name.outputs.current_branch }}" >> $GITHUB_ENV
           echo "PREVIEW_NAME=${{ steps.branch_name.outputs.current_branch }}" >> $GITHUB_ENV
+        if: github.event_name != 'issue_comment'
+
+      - name: Set variables for comment event
+        run: |
+          echo "DOCKER_IMAGE=eduardohmg/actions-test:${{ steps.comment_branch.outputs.base_ref }}" >> $GITHUB_ENV
+          echo "PREVIEW_NAME=${{ steps.comment_branch.outputs.base_ref }}" >> $GITHUB_ENV
+        if: github.event_name == 'issue_comment'
+
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
