@@ -19,8 +19,10 @@ jobs:
 
       - name: Set variables
         run: |
+          echo "${{ toJson(github) }}"
           echo "DOCKER_IMAGE=eduardohmg/actions-test:${{ steps.branch_name.outputs.current_branch }}" >> $GITHUB_ENV
           echo "PREVIEW_NAME=${{ steps.branch_name.outputs.current_branch }}" >> $GITHUB_ENV
+          echo "CURRENT_SHA=${{ steps.branch_name.outputs.current_branch }}" >> $GITHUB_ENV
         if: github.event_name != 'issue_comment'
 
       - name: Get branch name for comment event
