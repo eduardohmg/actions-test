@@ -38,9 +38,11 @@ jobs:
 
       - uses: LouisBrunner/checks-action@v1.1.2
         if: always()
+        id: create_check
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Deploy Preview
+          check_id: ${{ env.CURRENT_SHA }}
           sha: ${{ env.CURRENT_SHA }}
           status: in_progress
           output: |
@@ -92,7 +94,7 @@ jobs:
         if: always()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          check_id: Deploy Preview
+          check_id: ${{ env.CURRENT_SHA }}
           sha: ${{ env.CURRENT_SHA }}
           conclusion: ${{ job.status }}
           status: completed
