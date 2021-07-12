@@ -51,7 +51,7 @@ jobs:
             ${{ env.DOCKER_IMAGE }}
         if: always()
 
-      - name: update deployment status
+      - name: Update deployment status
         uses: bobheadxi/deployments@v0.6.0
         if: always()
         with:
@@ -60,3 +60,13 @@ jobs:
           status: ${{ job.status }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
           env_url: 'http://${{ env.PREVIEW_NAME }}.dev.loc'
+
+      - name: Update checks
+        uses: LouisBrunner/checks-action@v1.1.2
+        if: always()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Test XYZ
+          conclusion: ${{ job.status }}
+          output: |
+            {"summary":"Deployed on: http://${{ env.PREVIEW_NAME }}.dev.loc"}
