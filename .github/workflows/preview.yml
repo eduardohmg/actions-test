@@ -45,7 +45,6 @@ jobs:
           status: in_progress
           output: |
             {
-              "text_description": "Desc of my check",
               "summary": "URL: http://${{ env.PREVIEW_NAME }}.dev.loc"
             }
 
@@ -93,11 +92,11 @@ jobs:
         if: always()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: Deploy Preview
+          check_id: Deploy Preview
           sha: ${{ env.CURRENT_SHA }}
           conclusion: ${{ job.status }}
           status: completed
           output: |
             {
-              "text_description": "Desc of my check",
               "summary": "URL: http://${{ env.PREVIEW_NAME }}.dev.loc"
+            }
