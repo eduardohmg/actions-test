@@ -42,10 +42,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Deploy Preview
           sha: ${{ env.CURRENT_SHA }}
-          conclusion: ${{ job.status }}
+          status: in_progress
           output: |
             {
-              "text_description": "Desc of my check",
               "summary": "URL: http://${{ env.PREVIEW_NAME }}.dev.loc"
             }
 
@@ -89,12 +88,15 @@ jobs:
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
           env_url: 'http://${{ env.PREVIEW_NAME }}.dev.loc'
 
-      - name: Update checks
-        uses: LouisBrunner/checks-action@v1.1.2
+      - uses: LouisBrunner/checks-action@v1.1.1
         if: always()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: Deployment
+          check_id: Deploy Preview
+          sha: ${{ env.CURRENT_SHA }}
           conclusion: ${{ job.status }}
+          status: completed
           output: |
-            {"summary":"Deployed on: http://${{ env.PREVIEW_NAME }}.dev.loc"}
+            {
+              "summary": "URL: http://${{ env.PREVIEW_NAME }}.dev.loc"
+            }
