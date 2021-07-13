@@ -59,7 +59,19 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
+
+      - uses: LouisBrunner/checks-action@v1.1.2
+        if: always()
+        id: create_check
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Deploy Preview
+          sha: ${{ env.CURRENT_SHA }}
+          status: completed
+          conclusion: action_required
+          action_url: https://www.google.com
+          actions: "[\"Test Check\", \"ass?\"]"
+
       - name: Fetch war file
         uses: actions/download-artifact@v2
         with:
