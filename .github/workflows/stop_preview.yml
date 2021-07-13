@@ -76,6 +76,7 @@ jobs:
 
       - name: Delete Deployment Environment
         uses: strumwolf/delete-deployment-environment@v2.0.1
+        if: always()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           environment: ${{ env.PREVIEW_NAME }}
