@@ -1,0 +1,11 @@
+name: On Demand
+
+on: check_run
+
+jobs:
+  scan:
+    name: On Demand
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo test
+        run: echo "${{ toJson(github) }}"
