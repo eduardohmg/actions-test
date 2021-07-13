@@ -78,7 +78,7 @@ jobs:
         uses: strumwolf/delete-deployment-environment@v2.0.1
         if: always()
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.INTEGRATION_PAT }}
           environment: ${{ env.PREVIEW_NAME }}
 
       - uses: LouisBrunner/checks-action@v1.1.2
