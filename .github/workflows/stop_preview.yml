@@ -74,6 +74,12 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           env: ${{ env.PREVIEW_NAME }}
 
+      - name: Delete Deployment Environment
+        uses: strumwolf/delete-deployment-environment@v2.0.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: ${{ env.PREVIEW_NAME }}
+
       - uses: LouisBrunner/checks-action@v1.1.2
         if: always()
         with:
